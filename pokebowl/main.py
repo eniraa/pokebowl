@@ -1,3 +1,4 @@
+from test import MovementScene
 from typing import Sequence
 
 from game import Game, Scene
@@ -14,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         super(Player, self).__init__()
         self.surf = pygame.Surface((100, 100))
         self.surf.fill((255, 50, 30))
-        self.rect = self.surf.get_rect()
+        self.rect: pygame.rect.Rect = self.surf.get_rect()
 
     def update(self, pressed_keys: Sequence[bool]):
         if pressed_keys[K_UP]:
@@ -41,5 +42,5 @@ class TestScene(Scene):
 
 if __name__ == "__main__":
     game = Game()
-    game.switch_scene(TestScene)
+    game.switch_scene(MovementScene)
     game.start(SCREEN_WIDTH, SCREEN_HEIGHT, 60)
