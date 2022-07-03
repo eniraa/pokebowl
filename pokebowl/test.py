@@ -155,9 +155,6 @@ class Camera:
 
 class MovementScene(Scene):
     def __init__(self):
-        pygame.init()
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
         self.player = Player()
         self.camera = Camera(0, 0)
 
@@ -180,13 +177,13 @@ class MovementScene(Scene):
             game.switch_scene(None)
         self.camera.update(pressed_keys)
 
-        self.screen.fill((255, 255, 255))
+        game.screen.fill((255, 255, 255))
         # show map/environment
         # (random hard-coded solution)
         shown = self.camera.get_draw_tiles(self.map)
         for row in shown:
             for tile in row:
-                self.screen.blit(tile.surf, tile.rect)
+                game.screen.blit(tile.surf, tile.rect)
 
         # Put player on screen
-        self.screen.blit(self.player.surf, self.player.rect)
+        game.screen.blit(self.player.surf, self.player.rect)
