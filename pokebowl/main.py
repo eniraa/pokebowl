@@ -1,7 +1,8 @@
 from typing import Sequence
 
+from game import Game, Scene
 import pygame
-from pygame.locals import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, KEYDOWN, QUIT
+from pygame.locals import K_DOWN, K_LEFT, K_RIGHT, K_UP
 
 # constants
 SCREEN_WIDTH = 800
@@ -26,33 +27,19 @@ class Player(pygame.sprite.Sprite):
             self.rect.move_ip(5, 0)
 
 
-if __name__ == "__main__":
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+class TestScene(Scene):
+    def __init__(self):
+        self.player = Player()
 
-    clock = pygame.time.Clock()
-
-    player = Player()
-
-    running = True
-    while running:
-        # Process events
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    running = False
-            if event.type == QUIT:
-                running = False
-
+    def update(self, game):
         pressed_keys = pygame.key.get_pressed()
-        player.update(pressed_keys)
+        self.player.update(pressed_keys)
 
-        screen.fill((255, 255, 255))
-        # Put player on screen
-        screen.blit(player.surf, player.rect)
-        # Display stuff
-        pygame.display.flip()
+        game.screen.fill((255, 255, 255))
+        game.screen.blit(self.player.surf, self.player.rect)
 
-        # Maintain frame rate
-        clock.tick(60)
-    pygame.quit()
+
+if __name__ == "__main__":
+    game = Game()
+    game.switch_scene(TestScene)
+    game.start(SCREEN_WIDTH, SCREEN_HEIGHT, 60)
