@@ -6,6 +6,7 @@ authors = ["eniraa <47072520+eniraa@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pygame = "^2.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
