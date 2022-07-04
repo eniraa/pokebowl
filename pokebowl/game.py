@@ -14,6 +14,7 @@ class Game:
         self.scene = None
         self.screen = None
         self.clock = None
+        pygame.init()
 
     def switch_scene(self, scene: Type[Scene] | None):
         """Switches the scene."""
@@ -26,8 +27,6 @@ class Game:
 
     def start(self, width: int, height: int, framerate: int):
         """Starts the game. This blocks the program."""
-        pygame.init()
-
         self.screen = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
 

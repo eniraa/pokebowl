@@ -5,10 +5,10 @@ import pygame
 from pygame.locals import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP
 
 # constants
-SCREEN_WIDTH = 750
-SCREEN_HEIGHT = 550
+SCREEN_WIDTH = 512
+SCREEN_HEIGHT = 384
 
-TILE_SIZE = 50
+TILE_SIZE = 32
 WIDTH = SCREEN_WIDTH // TILE_SIZE
 HEIGHT = SCREEN_HEIGHT // TILE_SIZE
 
@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
     Has values surf, rect
     """
 
-    def __init__(self, x=TILE_SIZE * 7, y=TILE_SIZE * 5):
+    def __init__(self, x=TILE_SIZE * 3, y=TILE_SIZE * 2):
         super(Player, self).__init__()
         self.surf = pygame.Surface((TILE_SIZE, TILE_SIZE))
         self.surf.fill((200, 50, 30))
@@ -57,7 +57,7 @@ class Tile(pygame.sprite.Sprite):
 
 
 class Camera:
-    MOVE_TIME = 30
+    MOVE_TIME = 10
 
     def __init__(self, x: int, y: int, w: int = WIDTH, h: int = HEIGHT):
         """
