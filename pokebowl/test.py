@@ -117,9 +117,9 @@ class Camera:
         """
         # Not moving
         if self.state == 0:
+            assert len(map) > 0
             y_min = max(self.y, 0)
             y_max = min(self.y + self.h, len(map) - 1)
-            assert y_max >= y_min
             x_min = max(self.x, 0)
             x_max = min(self.x + self.w, len(map[y_min]) - 1)
             # Section out y's from y_min to y_max and x's from x_min to x_max inclusive
